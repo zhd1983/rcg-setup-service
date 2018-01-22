@@ -13,8 +13,10 @@
     * ```systemd```
       * ```sudo systemctl stop bluetooth``` (once)
       * ```sudo systemctl disable bluetooth``` (persist on reboot)
+
 * ```typeScript```
-* ```pm2```        
+* ```pm2```
+* ```bleno```          
 
 ```sh
 sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev
