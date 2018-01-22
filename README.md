@@ -12,7 +12,8 @@
       * ```sudo update-rc.d bluetooth remove``` (persist on reboot)
     * ```systemd```
       * ```sudo systemctl stop bluetooth``` (once)
-      * ```sudo systemctl disable bluetooth``` (persist on reboot)
+      * ```sudo systemctl disable bluetooth```(persist on reboot)
+
 
 * ```typeScript```
 * ```pm2```
