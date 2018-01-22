@@ -1,0 +1,8 @@
+{
+  "apps":[
+    {
+      "name":"laputa-rcg-set",
+      "script":"dist/index.js"
+    }
+  ]
+}

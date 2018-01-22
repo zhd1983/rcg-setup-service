@@ -1,0 +1,19 @@
+{
+  "name": "rcg-set",
+  "version": "1.0.0",
+  "description": "set rcg config with bluetooth",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ble"
+  ],
+  "author": "zhd",
+  "license": "ISC",
+  "dependencies": {
+    "bleno": "^0.4.2",
+    "config": "^1.29.2",
+    "moment": "^2.20.1"
+  }
+}
