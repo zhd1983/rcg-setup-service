@@ -1,57 +1,19 @@
 import * as bleno from 'bleno';
+import * as config from 'config';
+import * as moment from 'moment';
 import { setTimeout } from 'timers';
-import Network from './lib/network';
-import NetworkService from './lib/network-service';
+import Eth from './lib/eth/eth';
+import EthService from './lib/eth/eth-service';
 import Utils from './lib/utils';
-
+import Wlan from './lib/wlan/wlan';
+import WlanService from './lib/wlan/wlan-service';
 const BlenoPrimaryService = bleno.PrimaryService;
-const bleOptions = {
-  eth0: {
-    uuid: '1fe00000000000000000000000000000',
-    gateway: {
-      uuid: 'ce',
-      properties: ['read', 'write'],
-      descriptor: {
-        uuid: '2903',
-        value: 'rcg eth0 gateway.',
-      },
-    },
-    ip: {
-      uuid: 'ad',
-      properties: ['read', 'write'],
-      descriptor: {
-        uuid: '2903',
-        value: 'rcg eth0 ip.',
-      },
-    },
-    mask: {
-      uuid: 'df',
-      properties: ['read', 'write'],
-      descriptor: {
-        uuid: '2903',
-        value: 'rcg eth0 mask.',
-      },
-    },
-    dns: {
-      uuid: '66',
-      properties: ['read', 'write'],
-      descriptor: {
-        uuid: '2903',
-        value: 'rcg dns.',
-      },
-    },
-    save: {
-      uuid: 'ae',
-      properties: ['write'],
-      descriptor: {
-        uuid: '2903',
-        value: 'rcg save.',
-      },
-    },
-  },
-};
-const networkService = new NetworkService(bleOptions, new Network());
-// new Network().setGateway('eth1', '123');
+
+const ethOptions = config.eth0;
+const wlanOptions = config.wlan0;
+const ethService = new EthService(ethOptions, new Eth(), 'en01');
+const wlanService = new WlanService(wlanOptions, new Wlan(), 'wlp58s0');
+
 let name = 'rcg-';
 Utils.getCPUSerialNo((cpu) => {
   name += cpu || '110';
@@ -64,7 +26,7 @@ bleno.on('stateChange', (state) => {
     // so it's easier to find.
     //
     setTimeout(() => {
-      bleno.startAdvertising(name, [networkService.uuid], (err) => {
+      bleno.startAdvertising(name, [ethService.uuid], (err) => {
         if (err) {
           console.log(err);
         }
@@ -77,15 +39,22 @@ bleno.on('stateChange', (state) => {
 });
 bleno.on('advertisingStart', (err) => {
   if (!err) {
-    console.log('advertising...');
+    console.log(`${moment().format('YYYY-MM-DD HH:mm:ss')} [ble://${name}] advertising...`);
     //
     // Once we are advertising, it's time to set up our services,
     // along with our characteristics.
     //
     bleno.setServices([
-      networkService,
+      ethService,
+      wlanService,
     ]);
   } else {
     console.log(err);
   }
+});
+bleno.on('accept', (clientAddress) => {
+  console.log(`${moment().format('YYYY-MM-DD HH:mm:ss')} ${clientAddress} connected to [ble://${name}]!!`);
+});
+bleno.on('disconnect', (clientAddress) => {
+  console.log(`${moment().format('YYYY-MM-DD HH:mm:ss')} ${clientAddress} disconnected to [ble://${name}]!!`);
 });
