@@ -4,15 +4,19 @@ import * as moment from 'moment';
 import { setTimeout } from 'timers';
 import Eth from './lib/eth/eth';
 import EthService from './lib/eth/eth-service';
+import System from './lib/system/system';
+import SystemService from './lib/system/system-service';
 import Utils from './lib/utils';
 import Wlan from './lib/wlan/wlan';
 import WlanService from './lib/wlan/wlan-service';
-const BlenoPrimaryService = bleno.PrimaryService;
+// const BlenoPrimaryService = bleno.PrimaryService;
 
 const ethOptions = config.eth0;
 const wlanOptions = config.wlan0;
-const ethService = new EthService(ethOptions, new Eth(), 'en01');
+const systemOptions = config.system;
+const ethService = new EthService(ethOptions, new Eth(), 'eno1');
 const wlanService = new WlanService(wlanOptions, new Wlan(), 'wlp58s0');
+const systemService = new SystemService(systemOptions, new System());
 
 let name = 'rcg-';
 Utils.getCPUSerialNo((cpu) => {
@@ -26,7 +30,7 @@ bleno.on('stateChange', (state) => {
     // so it's easier to find.
     //
     setTimeout(() => {
-      bleno.startAdvertising(name, [ethService.uuid], (err) => {
+      bleno.startAdvertising(name, [], (err) => {
         if (err) {
           console.log(err);
         }
@@ -47,6 +51,7 @@ bleno.on('advertisingStart', (err) => {
     bleno.setServices([
       ethService,
       wlanService,
+      systemService,
     ]);
   } else {
     console.log(err);
