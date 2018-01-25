@@ -1,6 +1,6 @@
 {
   "name": "rcg-set",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "set rcg config with bluetooth",
   "main": "index.js",
   "scripts": {
