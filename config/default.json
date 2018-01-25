@@ -1,0 +1,198 @@
+{
+  "eth0": {
+    "uuid": "1fe00000000000000000000000000000",
+    "gateway": {
+      "uuid": "ce000000000000000000000000000001",
+      "properties": [
+        "read",
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg eth0 gateway."
+      }
+    },
+    "ip": {
+      "uuid": "ad000000000000000000000000000001",
+      "properties": [
+        "read",
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg eth0 ip."
+      }
+    },
+    "mask": {
+      "uuid": "df000000000000000000000000000001",
+      "properties": [
+        "read",
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg eth0 mask."
+      }
+    },
+    "dns": {
+      "uuid": "66000000000000000000000000000001",
+      "properties": [
+        "read",
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg eth0 dns."
+      }
+    },
+    "dhcp": {
+      "uuid": "dc000000000000000000000000000001",
+      "properties": [
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg eth0 dhcp."
+      }
+    }
+
+  },
+  "wlan0": {
+    "uuid": "1fa00000000000000000000000000000",
+    "gateway": {
+      "uuid": "ce000000000000000000000000000001",
+      "properties": [
+        "read",
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg wlan0 gateway."
+      }
+    },
+    "ip": {
+      "uuid": "ad000000000000000000000000000001",
+      "properties": [
+        "read",
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg wlan0 ip."
+      }
+    },
+    "mask": {
+      "uuid": "df000000000000000000000000000001",
+      "properties": [
+        "read",
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg wlan0 mask."
+      }
+    },
+    "dns": {
+      "uuid": "66000000000000000000000000000001",
+      "properties": [
+        "read",
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg wlan0 dns."
+      }
+    },
+    "dhcp": {
+      "uuid": "dc000000000000000000000000000001",
+      "properties": [
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg wlan0 dhcp."
+      }
+    },
+    "ssid": {
+      "uuid": "551d0000000000000000000000000001",
+      "properties": [
+        "read",
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg wlan0 ssid."
+      }
+    },
+    "psk": {
+      "uuid": "05000000000000000000000000000001",
+      "properties": [
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg wlan0 psk."
+      }
+    }
+
+  },
+  "system":{
+    "uuid": "51500000000000000000000000000000",
+    "reboot": {
+      "uuid": "eb000000000000000000000000000001",
+      "properties": [
+        "write",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "restart rcg."
+      }
+    },
+    "avg": {
+      "uuid": "a9000000000000000000000000000001",
+      "properties": [
+        "read",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg laodavg."
+      }
+    },
+    "mem": {
+      "uuid": "dd000000000000000000000000000001",
+      "properties": [
+        "read",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg used memery."
+      }
+    },    
+    "disk": {
+      "uuid": "d1c00000000000000000000000000001",
+      "properties": [
+        "read",
+        "notify"
+      ],
+      "descriptor": {
+        "uuid": "2903",
+        "value": "rcg used memery."
+      }
+    }
+  }
+}
