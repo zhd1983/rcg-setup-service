@@ -3,3 +3,4 @@ node_modules
 certs
 dist
 dhcpcd.conf
+wpa_supplicant.conf
