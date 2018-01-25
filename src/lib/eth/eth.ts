@@ -43,7 +43,7 @@ export default class Eth {
   }
   // tslint:disable-next-line:member-ordering
   private setGateway(networkInterface, gateway: string) {
-    const dhcpcdFile = '/media/chris/resource/node_apps/rcg-set/dhcpcd.conf';
+    const dhcpcdFile = '/etc/dhcpcd.conf';
     let dhcpcd = fs.readFileSync(dhcpcdFile, { encoding: 'utf8' });
     const dhcpcdList = dhcpcd.split('\n');
     // const interfaceIndex = dhcpcd.indexOf(`interface ${networkInterface}`);
@@ -69,7 +69,7 @@ export default class Eth {
 
   // tslint:disable-next-line:member-ordering
   private setIPv4(networkInterface, ip: string) {
-    const dhcpcdFile = '/media/chris/resource/node_apps/rcg-set/dhcpcd.conf';
+    const dhcpcdFile = '/etc/dhcpcd.conf';
     let dhcpcd = fs.readFileSync(dhcpcdFile, { encoding: 'utf8' });
     const dhcpcdList = dhcpcd.split('\n');
     // const interfaceIndex = dhcpcd.indexOf(`interface ${networkInterface}`);
@@ -98,7 +98,7 @@ export default class Eth {
   }
    // tslint:disable-next-line:member-ordering
   private setMask(networkInterface, mask: string) {
-    const dhcpcdFile = '/media/chris/resource/node_apps/rcg-set/dhcpcd.conf';
+    const dhcpcdFile = '/etc/dhcpcd.conf';
     let dhcpcd = fs.readFileSync(dhcpcdFile, { encoding: 'utf8' });
     const dhcpcdList = dhcpcd.split('\n');
     // const interfaceIndex = dhcpcd.indexOf(`interface ${networkInterface}`);
@@ -131,7 +131,7 @@ export default class Eth {
   }
   // tslint:disable-next-line:member-ordering
   private setDNS(networkInterface, dns: string) {
-    const dhcpcdFile = '/media/chris/resource/node_apps/rcg-set/dhcpcd.conf';
+    const dhcpcdFile = '/etc/dhcpcd.conf';
     let dhcpcd = fs.readFileSync(dhcpcdFile, { encoding: 'utf8' });
     const dhcpcdList = dhcpcd.split('\n');
     // const interfaceIndex = dhcpcd.indexOf(`interface ${networkInterface}`);
@@ -155,7 +155,7 @@ export default class Eth {
     fs.writeFileSync(dhcpcdFile, dhcpcd);
   }
   private setDHCP(networkInterface) {
-    const dhcpcdFile = '/media/chris/resource/node_apps/rcg-set/dhcpcd.conf';
+    const dhcpcdFile = '/etc/dhcpcd.conf';
     let dhcpcd = fs.readFileSync(dhcpcdFile, { encoding: 'utf8' });
     const dhcpcdList = dhcpcd.split('\n');
     const interfaceIndex = dhcpcdList.indexOf(`interface ${networkInterface}`);
