@@ -22,6 +22,7 @@ sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev
 ```
 ## 安装
 ```sh
+cd rcg-setup-service
 npm install -g typescript pm2
 npm init
 tsc
