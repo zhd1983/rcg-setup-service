@@ -1,7 +1,9 @@
 import { exec } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
-export default class Network {
+export default class Eth {
+
+  // private  dhcpcdFile= '/etc/dhcpcd.conf';
   private getGateway(networkInterface, cb) {
     const cmd = `netstat -rn|grep ${networkInterface}|awk '{print$2}'|sed '/0.0.0.0/d'`;
     exec(cmd, (err, stdout) => {
@@ -28,7 +30,7 @@ export default class Network {
   }
 
   // tslint:disable-next-line:member-ordering
-  public parseMask(mask) {
+  private parseMask(mask) {
     const maskList = mask.split('.');
     let result = 0;
     // tslint:disable-next-line:prefer-for-of
@@ -40,8 +42,9 @@ export default class Network {
 
   }
   // tslint:disable-next-line:member-ordering
-  public setGateway(networkInterface, gateway: string) {
-    let dhcpcd = fs.readFileSync(`/media/chris/resource/node_apps/rcg-set/dhcpcd.conf`, { encoding: 'utf8' });
+  private setGateway(networkInterface, gateway: string) {
+    const dhcpcdFile = '/media/chris/resource/node_apps/rcg-set/dhcpcd.conf';
+    let dhcpcd = fs.readFileSync(dhcpcdFile, { encoding: 'utf8' });
     const dhcpcdList = dhcpcd.split('\n');
     // const interfaceIndex = dhcpcd.indexOf(`interface ${networkInterface}`);
     const interfaceIndex = dhcpcdList.indexOf(`interface ${networkInterface}`);
@@ -61,12 +64,13 @@ export default class Network {
       dhcpcd += `\ninterface ${networkInterface}\nstatic routers=${gateway}`;
     }
     // console.log(dhcpcd);
-    fs.writeFileSync(`/media/chris/resource/node_apps/rcg-set/dhcpcd.conf`, dhcpcd);
+    fs.writeFileSync(dhcpcdFile, dhcpcd);
   }
 
   // tslint:disable-next-line:member-ordering
-  public setIPv4(networkInterface, ip: string) {
-    let dhcpcd = fs.readFileSync(`/media/chris/resource/node_apps/rcg-set/dhcpcd.conf`, { encoding: 'utf8' });
+  private setIPv4(networkInterface, ip: string) {
+    const dhcpcdFile = '/media/chris/resource/node_apps/rcg-set/dhcpcd.conf';
+    let dhcpcd = fs.readFileSync(dhcpcdFile, { encoding: 'utf8' });
     const dhcpcdList = dhcpcd.split('\n');
     // const interfaceIndex = dhcpcd.indexOf(`interface ${networkInterface}`);
     const interfaceIndex = dhcpcdList.indexOf(`interface ${networkInterface}`);
@@ -90,12 +94,12 @@ export default class Network {
       dhcpcd += `\ninterface ${networkInterface}\nstatic ip_address=${ip}`;
     }
     // console.log(dhcpcd);
-    fs.writeFileSync(`/media/chris/resource/node_apps/rcg-set/dhcpcd.conf`, dhcpcd);
+    fs.writeFileSync(dhcpcdFile, dhcpcd);
   }
    // tslint:disable-next-line:member-ordering
-  public setMask(networkInterface, mask: string) {
-    // const that = this;
-    let dhcpcd = fs.readFileSync(`/media/chris/resource/node_apps/rcg-set/dhcpcd.conf`, { encoding: 'utf8' });
+  private setMask(networkInterface, mask: string) {
+    const dhcpcdFile = '/media/chris/resource/node_apps/rcg-set/dhcpcd.conf';
+    let dhcpcd = fs.readFileSync(dhcpcdFile, { encoding: 'utf8' });
     const dhcpcdList = dhcpcd.split('\n');
     // const interfaceIndex = dhcpcd.indexOf(`interface ${networkInterface}`);
     const interfaceIndex = dhcpcdList.indexOf(`interface ${networkInterface}`);
@@ -123,11 +127,12 @@ export default class Network {
       dhcpcd += `\ninterface ${networkInterface}\nstatic ip_address=/${result}`;
     }
     // console.log(dhcpcd);
-    fs.writeFileSync(`/media/chris/resource/node_apps/rcg-set/dhcpcd.conf`, dhcpcd);
+    fs.writeFileSync(dhcpcdFile, dhcpcd);
   }
   // tslint:disable-next-line:member-ordering
-  public setDNS(networkInterface, dns: string) {
-    let dhcpcd = fs.readFileSync(`/media/chris/resource/node_apps/rcg-set/dhcpcd.conf`, { encoding: 'utf8' });
+  private setDNS(networkInterface, dns: string) {
+    const dhcpcdFile = '/media/chris/resource/node_apps/rcg-set/dhcpcd.conf';
+    let dhcpcd = fs.readFileSync(dhcpcdFile, { encoding: 'utf8' });
     const dhcpcdList = dhcpcd.split('\n');
     // const interfaceIndex = dhcpcd.indexOf(`interface ${networkInterface}`);
     const interfaceIndex = dhcpcdList.indexOf(`interface ${networkInterface}`);
@@ -147,12 +152,35 @@ export default class Network {
       dhcpcd += `\ninterface ${networkInterface}\nstatic domain_name_servers=${dns}`;
     }
     // console.log(dhcpcd);
-    fs.writeFileSync(`/media/chris/resource/node_apps/rcg-set/dhcpcd.conf`, dhcpcd);
+    fs.writeFileSync(dhcpcdFile, dhcpcd);
   }
+  private setDHCP(networkInterface) {
+    const dhcpcdFile = '/media/chris/resource/node_apps/rcg-set/dhcpcd.conf';
+    let dhcpcd = fs.readFileSync(dhcpcdFile, { encoding: 'utf8' });
+    const dhcpcdList = dhcpcd.split('\n');
+    const interfaceIndex = dhcpcdList.indexOf(`interface ${networkInterface}`);
+    // 注释相关设置
+    if (interfaceIndex >= 0) {
+      // 找到下一个interface节点,注释2个节点之间的设置
+      let nextInterfaceIndex = dhcpcdList.findIndex((e, i, a) => {
+        const result = i > interfaceIndex && e.substring(0, 9) === 'interface';
+        return result;
+      });
+      if (nextInterfaceIndex === -1) {
+        nextInterfaceIndex = dhcpcdList.length;
+      }
+      for (let index = interfaceIndex; index < nextInterfaceIndex; index++) {
+        dhcpcdList[index] = '# ' + dhcpcdList[index];
 
-  // tslint:disable-next-line:member-ordering
-  public reboot() {
-    // const cmd = `ifconfig ${networkInterface} |grep inet|grep -v inet6|awk '{print $2}'|cut -d ':' -f 2`;
-    exec('sudo reboot');
+      }
+    }
+    dhcpcd = dhcpcdList.join('\n');
+    fs.writeFileSync(dhcpcdFile, dhcpcd);
+
   }
+  // // tslint:disable-next-line:member-ordering
+  // private reboot() {
+  //   // const cmd = `ifconfig ${networkInterface} |grep inet|grep -v inet6|awk '{print $2}'|cut -d ':' -f 2`;
+  //   exec('sudo reboot');
+  // }
 }

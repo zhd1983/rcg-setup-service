@@ -1,12 +1,15 @@
 import * as bleno from 'bleno';
-export default class NetworkCharacteristic extends bleno.Characteristic {
+export default class EthCharacteristic extends bleno.Characteristic {
   [x: string]: any;
-  private pwd = 171;
-  private reboot = 159;
-  private read;
-  private write;
-  private networkInterface= 'eno1';
-  constructor(options, read, write) {
+  protected pwd = 171;
+  protected dhcp = 0xdc;
+  protected read;
+  protected write;
+  // protected uuid;
+  // tslint:disable-next-line:member-ordering
+  protected networkInterface;
+  // private reboot = 159;
+  constructor(options, read, write, networkInterface) {
     super(
       {
         uuid: options.uuid,
@@ -14,10 +17,13 @@ export default class NetworkCharacteristic extends bleno.Characteristic {
         descriptors: [
           new bleno.Descriptor(options.descriptor),
         ],
+
       },
     );
     this.read = read;
     this.write = write;
+    this.networkInterface = networkInterface;
+    // this.uuid = options.uuid;
   }
   public onReadRequest(offset, callback) {
     if (offset) {
@@ -49,9 +55,9 @@ export default class NetworkCharacteristic extends bleno.Characteristic {
       writeData = writeData.substring(0, writeData.length - 1);
       this.write(this.networkInterface, writeData);
       callback(this.RESULT_SUCCESS);
-    } else if (data[4] === this.reboot) {
-      this.write();
-
+    } else if (data[4] === this.dhcp) {
+      this.write(this.networkInterface);
+      callback(this.RESULT_SUCCESS);
     } else {
       callback(this.RESULT_INVALID_OFFSET);
     }
