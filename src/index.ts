@@ -14,8 +14,8 @@ import WlanService from './lib/wlan/wlan-service';
 const ethOptions = config.eth0;
 const wlanOptions = config.wlan0;
 const systemOptions = config.system;
-const ethService = new EthService(ethOptions, new Eth(), 'eno1');
-const wlanService = new WlanService(wlanOptions, new Wlan(), 'wlp58s0');
+const ethService = new EthService(ethOptions, new Eth(), 'eth0');
+const wlanService = new WlanService(wlanOptions, new Wlan(), 'wlan0');
 const systemService = new SystemService(systemOptions, new System());
 
 let name = 'rcg-';
