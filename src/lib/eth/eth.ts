@@ -23,7 +23,7 @@ export default class Eth {
     });
   }
   private getDNS(networkInterface, cb) {
-    const cmd = `cat /etc/resolv.conf|grep nameserver|awk '{print $2}'`;
+    const cmd = `cat /etc/resolv.conf|grep nameserver|awk '{print $2}'|sed -n 1p`;
     exec(cmd, (err, stdout) => {
       cb(stdout.replace(/[\n]/g, ''));
     });
