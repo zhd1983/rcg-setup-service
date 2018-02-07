@@ -26,7 +26,7 @@ export default class WlanCharacteristic extends EthCharacteristic {
   public onWriteRequest(data, offset, withoutResponse, callback) {
     if (offset) {
       callback(this.RESULT_ATTR_NOT_LONG);
-    } else if (this.uuid === '05000000000000000000000000000001' || '551d0000000000000000000000000001') {
+    } else if (this.uuid === ('05000000000000000000000000000001' || '551d0000000000000000000000000001')) {
       this.write(data.toString());
       callback(this.RESULT_SUCCESS);
     } else if (data.length !== 5) {
