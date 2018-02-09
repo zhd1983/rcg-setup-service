@@ -29,7 +29,7 @@ sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev
 cd rcg-setup-service
 npm install -g typescript pm2
 pm2 startup
-npm init
+npm install
 tsc
 ```
 ## 运行
