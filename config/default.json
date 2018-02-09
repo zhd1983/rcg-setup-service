@@ -5,8 +5,7 @@
       "uuid": "ce000000000000000000000000000001",
       "properties": [
         "read",
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -17,8 +16,7 @@
       "uuid": "ad000000000000000000000000000001",
       "properties": [
         "read",
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -29,8 +27,7 @@
       "uuid": "df000000000000000000000000000001",
       "properties": [
         "read",
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -41,8 +38,7 @@
       "uuid": "66000000000000000000000000000001",
       "properties": [
         "read",
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -52,8 +48,7 @@
     "dhcp": {
       "uuid": "dc000000000000000000000000000001",
       "properties": [
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -68,8 +63,7 @@
       "uuid": "ce000000000000000000000000000001",
       "properties": [
         "read",
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -80,8 +74,7 @@
       "uuid": "ad000000000000000000000000000001",
       "properties": [
         "read",
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -92,8 +85,7 @@
       "uuid": "df000000000000000000000000000001",
       "properties": [
         "read",
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -104,8 +96,7 @@
       "uuid": "66000000000000000000000000000001",
       "properties": [
         "read",
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -115,8 +106,7 @@
     "dhcp": {
       "uuid": "dc000000000000000000000000000001",
       "properties": [
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -127,8 +117,7 @@
       "uuid": "551d0000000000000000000000000001",
       "properties": [
         "read",
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -138,8 +127,7 @@
     "psk": {
       "uuid": "05000000000000000000000000000001",
       "properties": [
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -153,8 +141,7 @@
     "reboot": {
       "uuid": "eb000000000000000000000000000001",
       "properties": [
-        "write",
-        "notify"
+        "write"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -164,8 +151,7 @@
     "avg": {
       "uuid": "a9000000000000000000000000000001",
       "properties": [
-        "read",
-        "notify"
+        "read"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -175,8 +161,7 @@
     "mem": {
       "uuid": "dd000000000000000000000000000001",
       "properties": [
-        "read",
-        "notify"
+        "read"
       ],
       "descriptor": {
         "uuid": "2903",
@@ -186,8 +171,7 @@
     "disk": {
       "uuid": "d1c00000000000000000000000000001",
       "properties": [
-        "read",
-        "notify"
+        "read"
       ],
       "descriptor": {
         "uuid": "2903",
